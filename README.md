@@ -15,4 +15,5 @@ render_post_html: Generates the HTML for an individual post.
 render_reply_html: Generates the HTML for an individual reply 
 Code is agnostic (makes its own directories so run it in any directory)
 latest reply brings post to top in main page, 
-At this point requires intense testing to find and eliminate bugs. 
+At this point requires intense testing to find and eliminate bugs. that will take a few days
+but then after that 80+ percent of app should be done and tested. 
