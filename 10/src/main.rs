@@ -119,8 +119,8 @@ async fn save_post(
             .finish())
     } else {
         Ok(HttpResponse::SeeOther()
-            .append_header(("Location", "/")))
-            .finish()
+            .append_header(("Location", "/"))
+            .finish())
     }
 }
 
