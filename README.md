@@ -4,3 +4,4 @@
 
 7--showing promise
 8-- yikes i think it introduced some bugs
+9--- getting a lil crazy, main.rs makes html template strings now for easy debugging cuz its getting complicated
