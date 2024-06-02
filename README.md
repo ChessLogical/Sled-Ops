@@ -20,6 +20,5 @@ but then after that 80+ percent of app should be done and tested.
 
 11/ refined to get warnings out, still untested and also a critical time in the dev because from here it can fork out to 
 be very different things. 
-12// could have jumped from 11 many different ways. I went with askama template engine because it is simple and compiles the templates into rust code
-which is super nice. Just 1 of many possibilities, for now i will stick with it and dev from here. At any point anyone can go back to 
-11 and jump into  other ways. 
+
+12// could have jumped from 11 many different ways. I went with askama template engine. Why? Compile-Time Safety: Askama templates are compiled into Rust code at build time, which ensures that any errors in the templates are caught early. This can lead to fewer runtime errors and more reliable code. Performance: Because Askama templates are compiled into Rust code, they can be highly optimized. The overhead of parsing and interpreting templates at runtime is eliminated, leading to faster execution. Just 1 of many possibilities, for now i will stick with it and dev from here. At any point anyone can go back to 11 and jump in other directions. . 
