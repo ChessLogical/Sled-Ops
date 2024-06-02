@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Form</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form action="/submit" method="post" enctype="multipart/form-data" class="post-form">
+        <input type="text" name="title" placeholder="Title" maxlength="15" required><br>
+        <textarea name="message" placeholder="Message" maxlength="100000" required></textarea><br>
+        <input type="file" name="file" accept=".jpg,.gif,.png,.mp3,.mp4,.webm,.webp"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    {% for post in posts %}
+        <div class="post">
+            <div class="reply-link"><a href="/post/{{ post.id }}">Reply</a></div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.message }}</p>
+            {% if post.file_url().is_some() %}
+                {% if post.is_image() %}
+                    <img src="/static/uploads/{{ post.file_url().unwrap() }}" width="200" height="200" alt="Image">
+                {% else if post.is_video() %}
+                    <video width="200" height="200" controls>
+                        <source src="/static/uploads/{{ post.file_url().unwrap() }}" type="video/{{ post.file_url().unwrap().split('.').last().unwrap() }}">
+                        Your browser does not support the video tag.
+                    </video>
+                {% else if post.is_audio() %}
+                    <audio controls>
+                        <source src="/static/uploads/{{ post.file_url().unwrap() }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                {% else %}
+                    <a href="/static/uploads/{{ post.file_url().unwrap() }}">Download file</a>
+                {% endif %}
+            {% endif %}
+            <hr>
+        </div>
+    {% endfor %}
+    <div class="pagination-links">
+        {% if prev_page.is_some() %}
+            <a href="/?page={{ prev_page.unwrap() }}" class="pagination">Previous</a>
+        {% endif %}
+        {% if next_page.is_some() %}
+            <a href="/?page={{ next_page.unwrap() }}" class="pagination">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>

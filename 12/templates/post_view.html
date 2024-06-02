@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Post</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <a href="/" class="back-link">Back to Main Board</a>
+    <form action="/submit" method="post" enctype="multipart/form-data" class="reply-form">
+        <input type="hidden" name="parent_id" value="{{ post.id }}">
+        <input type="text" name="title" placeholder="Title" maxlength="15" required><br>
+        <textarea name="message" placeholder="Message" maxlength="100000" required></textarea><br>
+        <input type="file" name="file" accept=".jpg,.gif,.png,.mp3,.mp4,.webm,.webp"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <div class="original-post">
+        <div class="reply-link"><a href="/post/{{ post.id }}">Reply</a></div>
+        <h4>Original Post</h4>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.message }}</p>
+        {% if post.file_url().is_some() %}
+            {% if post.is_image() %}
+                <img src="/static/uploads/{{ post.file_url().unwrap() }}" width="200" height="200" alt="Image">
+            {% else if post.is_video() %}
+                <video width="200" height="200" controls>
+                    <source src="/static/uploads/{{ post.file_url().unwrap() }}" type="video/{{ post.file_url().unwrap().split('.').last().unwrap() }}">
+                    Your browser does not support the video tag.
+                </video>
+            {% else if post.is_audio() %}
+                <audio controls>
+                    <source src="/static/uploads/{{ post.file_url().unwrap() }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            {% else %}
+                <a href="/static/uploads/{{ post.file_url().unwrap() }}">Download file</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <hr>
+    <div class="replies">
+        {% for reply in replies %}
+            <div class="reply">
+                <h4>Reply {{ loop.index }}</h4>
+                <p>{{ reply.message }}</p>
+                {% if reply.file_url().is_some() %}
+                    {% if reply.is_image() %}
+                        <img src="/static/uploads/{{ reply.file_url().unwrap() }}" width="200" height="200" alt="Image">
+                    {% else if reply.is_video() %}
+                        <video width="200" height="200" controls>
+                            <source src="/static/uploads/{{ reply.file_url().unwrap() }}" type="video/{{ reply.file_url().unwrap().split('.').last().unwrap() }}">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else if reply.is_audio() %}
+                        <audio controls>
+                            <source src="/static/uploads/{{ reply.file_url().unwrap() }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    {% else %}
+                        <a href="/static/uploads/{{ reply.file_url().unwrap() }}">Download file</a>
+                    {% endif %}
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
