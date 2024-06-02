@@ -20,3 +20,6 @@ but then after that 80+ percent of app should be done and tested.
 
 11/ refined to get warnings out, still untested and also a critical time in the dev because from here it can fork out to 
 be very different things. 
+12// could have jumped from 11 many different ways. I went with askama template engine because it is simple and compiles the templates into rust code
+which is super nice. Just 1 of many possibilities, for now i will stick with it and dev from here. At any point anyone can go back to 
+11 and jump into  other ways. 
