@@ -22,3 +22,5 @@ but then after that 80+ percent of app should be done and tested.
 be very different things. 
 
 12// could have jumped from 11 many different ways. I went with askama template engine. Why? Compile-Time Safety: Askama templates are compiled into Rust code at build time, which ensures that any errors in the templates are caught early. This can lead to fewer runtime errors and more reliable code. Performance: Because Askama templates are compiled into Rust code, they can be highly optimized. The overhead of parsing and interpreting templates at runtime is eliminated, leading to faster execution. Just 1 of many possibilities, for now i will stick with it and dev from here. At any point anyone can go back to 11 and jump in other directions. . 
+
+13- slight improvments. suitable for being called version 0001
