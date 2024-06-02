@@ -17,3 +17,6 @@ Code is agnostic (makes its own directories so run it in any directory)
 latest reply brings post to top in main page, 
 At this point requires intense testing to find and eliminate bugs. that will take a few days
 but then after that 80+ percent of app should be done and tested. 
+
+11/ refined to get warnings out, still untested and also a critical time in the dev because from here it can fork out to 
+be very different things. 
